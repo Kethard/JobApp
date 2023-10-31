@@ -1,0 +1,13 @@
+{% if isauth %}
+    <h1>Hello {{name}}, you are {{age}} years old.</h1>
+{% else %}
+    <h1>Hello Stranger.</h1>
+{% endif %}
+{% for item in lista %}
+    <h1>{{item}}</h1>
+{% endfor %}
+<h1>ok</h1>
+<h2>{{tempobj.x}}</h2>
+<h3>{{new_list}}</h3>
+<h1>Filtry</h1>
+{{lista|length_is:"5"}}

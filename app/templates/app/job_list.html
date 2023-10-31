@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job List</title>
+</head>
+<body>
+<ul>
+    {% for j in jobs %}
+        <li>
+            <h1><a href="job/{{forloop.counter0}}">{{j}}</a></h1>
+        </li>
+    {% endfor %}
+</ul>
+    {% comment %}
+        list = "<ul>"
+        job_id = job_title.index(job)
+        detail = reverse('job_detail',args=(job_id,))
+        list += f"<li><a href={{detail}}>{job}</a></li>"
+        list += "</ul>"
+    {% endcomment %}
+
+
+</body>
+</html>
