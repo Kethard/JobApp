@@ -5,6 +5,7 @@ class JobPost(models.Model):
     title = models.CharField(max_length=200, default='')
     description = models.CharField(max_length=200, default='')
     date = models.DateTimeField(auto_now_add=True)
+    expiry = models.DateField(null=True)
     salary = models.IntegerField()
     slug = models.SlugField(null=True, unique = True)
 
@@ -13,4 +14,4 @@ class JobPost(models.Model):
             self.slug = slugify(self.title)
         return super(JobPost, self).save(*args, **kwargs)
     def __str__(self):
-        return self.title
+        return f'{self.title} zarobki: {self.salary} PLN'
