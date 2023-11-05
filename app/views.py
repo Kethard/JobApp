@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import redirect
 from django.urls import reverse
+from app.models import JobPost
 from django.template import loader
 # Create your views here.
 job_title = [
@@ -22,13 +23,16 @@ list = "<ul><li>Job 1</li><li>Job 2</li><li>Job 3</li></ul>"
 class TempClass:
     x = 5
 def job_list(request):
-    context = {'jobs':job_title,}
+    job_list = JobPost.objects.all()
+    context = {'jobs':job_list,}
     return render(request, 'app/job_list.html', context)
 def job(request, id):
     try:
-        if id == 0:
+        job_list = JobPost.objects.get(id = id)
+        if job_list.id == 0:
             return redirect(reverse('jobs_home'))
-        context={'jobs':job_title[id],'descriptions':job_description[id]}
+        #context={'jobs':job_list.title[job_list.id],'descriptions':job_list.description[job_list.id]}
+        context={'job':job_list}
         return render(request,'app/job_det.html',context)
     except:
         return HttpResponseNotFound("<h2 align=center>Page Not Found</h2>")

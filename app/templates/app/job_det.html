@@ -6,7 +6,9 @@
 </head>
 <body>
 <a href="{% url 'jobs_home' %}"><h4>Home</h4></a>
-<h1>{{jobs}}</h1>
-<h2>{{descriptions}}</h2>
+<h1>{{job.title}}</h1>
+<h2>{{job.description}}</h2>
+<h3>{{job.salary}} PLN</h3>
+<h4>{{job.date}}</h4>
 </body>
 </html>
