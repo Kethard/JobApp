@@ -1,22 +1,40 @@
-<h2>Subscribe!</h2>
+{% load static %}
+<html>
+<head>
+    <title>Subscribe Form</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'subscribe/main.css' %}"
+    <link rel="stylesheet" type=""
+</head>
+<body>
+<h2><img width="20px" src="{% static 'subscribe/download.png' %}" alt="subscribe">Subscribe!</h2>
 <form method="post">
     {% csrf_token %}
+    {% for field in form %}
     <div class="subscribe_field">
-        {{ form.first_name.errors }}
-        <label for="{{form.first_name.id_for_label}}">{{form.first_name.label}}</label>
-        {{ form.first_name }}
+        {{ field.errors }}
+        <label for="{{field.id_for_label}}">{{field.label}}</label>
+        {{ field }}
     </div>
-    <div class="subscribe_field">
-        {{ form.last_name.errors }}
-        <label for="{{form.last_name.id_for_label}}">{{form.last_name.label}}</label>
-        {{ form.last_name }}
-    </div>
-    <div class="subscribe_field">
-        {{ form.email.errors }}
-        <label for="{{form.email.id_for_label}}">{{form.email.label}}</label>
-        {{ form.email }}
-    </div>
-    <input type="submit" value="Wyślij"><!--{{ form.as_p }}
+    {% endfor %}
+
+<!--    <div class="subscribe_field">-->
+<!--        {{ form.first_name.errors }}-->
+<!--        <label for="{{form.first_name.id_for_label}}">{{form.first_name.label}}</label>-->
+<!--        {{ form.first_name }}-->
+<!--    </div>-->
+<!--    <div class="subscribe_field">-->
+<!--        {{ form.last_name.errors }}-->
+<!--        <label for="{{form.last_name.id_for_label}}">{{form.last_name.label}}</label>-->
+<!--        {{ form.last_name }}-->
+<!--    </div>-->
+<!--    <div class="subscribe_field">-->
+<!--        {{ form.email.errors }}-->
+<!--        <label for="{{form.email.id_for_label}}">{{form.email.label}}</label>-->
+<!--        {{ form.email }}-->
+<!--    </div>-->
+    <input type="submit" value="Wyślij">
+    <button onclick="popup()">Click Me!</button>
+    <script src="{% static 'subscribe/main.js' %}"></script><!--{{ form.as_p }}
     <input type="submit" value="Wyślij">
     --!>
     <!--{% csrf_token %}
@@ -33,3 +51,5 @@
     {% endif %}
 --!>
 </form>
+</body>
+</html>

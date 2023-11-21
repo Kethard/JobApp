@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+ {{form.as_p}}
+    <button type="submit">Wyślij</button>
+</form>
+{% if saved_obj %}
+<p>Upload successful: {{saved_obj.image.url}}</p>
+<p>Image description: {{saved_obj.description}}</p>
+<img src="{{saved_obj.image.url}}" alt="your's image" style="max-height:100px">
+{% endif %}
+</body>
+</html>
