@@ -19,11 +19,17 @@ class Location(models.Model):
     def __str__(self):
         return self.street
 class JobPost(models.Model):
+    JOB_TYPE_CHOICES = [
+        ('Pełny etat','Pełny etat'),
+        ('Połowa etatu','Połowa etatu'),
+        ('Ćwierć etatu','Ćwierć etatu'),
+    ]
     title = models.CharField(max_length=200, default='')
     description = models.CharField(max_length=200, default='')
     date = models.DateTimeField(auto_now_add=True)
     expiry = models.DateField(null=True)
     salary = models.IntegerField()
+    type = models.CharField(max_length=100, choices=JOB_TYPE_CHOICES, null=False)
     slug = models.SlugField(null=True, unique = True)
     #relations one-to-one
     location = models.OneToOneField(Location,on_delete = models.CASCADE, null = True)
